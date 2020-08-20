@@ -17,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import javax.annotation.Resource;
 import java.util.Properties;
 
 /**
@@ -27,7 +28,7 @@ import java.util.Properties;
 public class DiaryConfig extends WebSecurityConfigurerAdapter {
 
 
-    @Autowired
+    @Resource
     private UserDetailsService userDetailsService;
 
     @Override
@@ -84,7 +85,9 @@ public class DiaryConfig extends WebSecurityConfigurerAdapter {
     //忽略静态请求
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/kaptcha","/bootstrap/**", "/css/**", "/font/**", "/images/**", "/img.404/**", "/jquery/**", "/js/**", "/ztree/**", "/layer/**", "/lib/**");
+        web.ignoring().antMatchers("/kaptcha","https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js",
+                "https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js",
+                "/bootstrap/**", "/css/**", "/font/**", "/images/**", "/img.404/**", "/jquery/**", "/js/**", "/ztree/**", "/layer/**", "/lib/**");
 
 
     }

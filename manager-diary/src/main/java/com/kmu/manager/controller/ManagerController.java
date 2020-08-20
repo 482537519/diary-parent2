@@ -155,7 +155,7 @@ public class ManagerController {
         UserDetails userDetails = (UserDetails) spring_security_context.getAuthentication().getPrincipal();
         String username = userDetails.getUsername();
         session.setAttribute("account", username);
-        return "indexTwo";
+        return "index";
     }
 
     //注入验证码生产者

@@ -9,9 +9,11 @@ import com.kmu.manager.mapper.ManagerMapper;
 import com.kmu.manager.service.ManagerService;
 import com.kmu.manager.util.ResultEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -19,7 +21,7 @@ import java.util.List;
  */
 @Service
 public class ManagerServiceImpl extends ServiceImpl<ManagerMapper, Manager> implements ManagerService {
-    @Autowired
+    @Resource
     ManagerMapper managerMapper;
 
     @Autowired
@@ -47,7 +49,6 @@ public class ManagerServiceImpl extends ServiceImpl<ManagerMapper, Manager> impl
     @Override
     public ResultEntity insert(Manager manager) {
         QueryWrapper<Manager> qw = new QueryWrapper<>();
-//        new BCryptPas
         //判断帐号是否已存在
         qw.eq("m_account",manager.getAccount());
         List<Manager> managers = managerMapper.selectList(qw);
