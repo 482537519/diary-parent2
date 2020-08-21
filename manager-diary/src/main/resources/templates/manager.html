@@ -37,7 +37,7 @@
             <!-- 显示学生总数 -->
             <div class="stuInfor_stuNumber col-md-3 col-lg-3">
                 <!--                <span class="stuInfor_stuNumberSpan">共有数据：<strong class="stuInfor__stuNumberStrong"></strong> 条</span>-->
-                <span class="stuInfor_stuNumberSpan">共有数据：[[${result.data.getPages()}]] 条</span>
+                <span class="stuInfor_stuNumberSpan">共有数据：[[${result.data.getTotal()}]] 条</span>
                 <!--                    <div id="export">导出</div>-->
             </div>
 
@@ -521,8 +521,9 @@
                     <div class="row">
                         <div class="stuInfor_view_headPortrait_col col-md-6 col-lg-6">
                             <div style="margin:0 auto" class="stuInfor_view_headPortrait">
-                                <img id="imgId" class="stuInfor_add_headPortraitImg stuInfor_view_headPortraitImg"
-                                     th:src="@{/images/stuInfor_images/add_stuImg.png}" alt="">
+                                <img  class="stuInfor_add_headPortraitImg stuInfor_view_headPortraitImg"
+                                     src="" alt="" id="imgValue">
+<!--                                     th:src="@{/images/stuInfor_images/add_stuImg.png}" alt="">-->
                                 <input type="text" id="headPicId2" name="headPic" style="display: none">
                             </div>
                             <br>
@@ -747,10 +748,17 @@
                     $("#email").val(result.data.email);
                     $("#age").val(result.data.age);
                     $("#phone").val(result.data.phone);
+                    $("#headPicId2").val(result.data.headPic);
                     //性别当选框回显
                     $("input[name=gender][value="+result.data.gender+"]").attr("checked",true);
                     //显示图片
-                    $('.stuInfor_add_headPortraitImg').attr('src', "E:\\uploadFile" + result.data.headPic);
+                    $("#imgValue").attr("src", "/myHead/" + result.data.headPic);
+                    // $("#imgValue").attr("src", "https://kmu-headpic.oss-cn-chengdu.aliyuncs.com/" + result.data.headPic);
+                },
+                error:function () {
+                    layer.msg('修改失败！', {
+                        icon: 6
+                    });
                 }
             });
         });

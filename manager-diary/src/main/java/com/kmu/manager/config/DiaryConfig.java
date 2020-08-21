@@ -77,16 +77,14 @@ public class DiaryConfig extends WebSecurityConfigurerAdapter {
                 .and().logout().logoutUrl("/logout")
                 .and().rememberMe().rememberMeParameter("remember-me")
                 .and().csrf().disable() //禁用csrf功能，这里暂时用不到
+                .headers().frameOptions().disable()
         ;
-
-
     }
 
     //忽略静态请求
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/kaptcha","https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js",
-                "https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js",
+        web.ignoring().antMatchers("/kaptcha","file:E:/uploadFile/","https://kmu-headpic.oss-cn-chengdu.aliyuncs.com/",
                 "/bootstrap/**", "/css/**", "/font/**", "/images/**", "/img.404/**", "/jquery/**", "/js/**", "/ztree/**", "/layer/**", "/lib/**");
 
 

@@ -7,3 +7,6 @@ spring:
 
 disk:
   picPrefix: "E:\\uploadFile\\"
+
+oss:
+  headpic: "https://kmu-headpic.oss-cn-chengdu.aliyuncs.com/"

@@ -105,9 +105,18 @@ public class ManagerController {
     public ResultEntity submitPic(MultipartFile file, HttpSession session) throws IOException {
         String randomString = UploadUtil.randomString();
         String picName=randomString+file.getOriginalFilename();
+
 //        file.transferTo(new File("E:\\uploadFile\\"+picName));
+
         file.transferTo(new File(picPrefix+picName));
         return ResultEntity.successWithData(picName);
+
+        //上传阿里云
+//        boolean upload = UploadUtil.upload(picName, file.getInputStream(), "kmu-headpic");
+//        if (upload){
+//            return ResultEntity.successWithData(picName);
+//        }
+//        return ResultEntity.failed();
     }
 
 
@@ -118,6 +127,7 @@ public class ManagerController {
             , @RequestParam(defaultValue = "5",required = false) Integer pageSize, Model model){
 
         Page<Manager> lpages= managerService.selectManagers(account,pageNum,pageSize);
+//        lpages.getTotal()
         ResultEntity result = ResultEntity.successWithData(lpages);
 //        System.out.println(lpages.getRecords());
 //        System.out.println(lpages.getCurrent());
